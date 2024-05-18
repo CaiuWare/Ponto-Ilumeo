@@ -1,3 +1,4 @@
+import React from 'react'
 import { Title, Text, Input, Container, Button } from '@mantine/core';
 import classes from './loginPage.module.css';
 // import { Navigate } from 'react-router-dom';

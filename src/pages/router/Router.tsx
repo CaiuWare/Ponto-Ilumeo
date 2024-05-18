@@ -1,6 +1,7 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { HomePage } from './home';
-import { TimeClockPage } from './timeClock';
+import React from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { HomePage } from './home'
+import { TimeClockPage } from './timeClock'
 
 const router = createBrowserRouter([
   {
@@ -9,10 +10,10 @@ const router = createBrowserRouter([
   },
   {
     path: '/id',
-    element: <TimeClockPage />
-  }
-]);
+    element: <TimeClockPage />,
+  },
+])
 
 export function Router() {
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />
 }
