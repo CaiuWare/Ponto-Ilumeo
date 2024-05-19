@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: '/id',
+    path: '/:id',
     element: <TimeClockPage />,
   },
 ])

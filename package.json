@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm rum dev & npm rum start:server",
+    "dev:client": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext .ts --fix",
     "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
@@ -55,6 +56,7 @@
     "@typescript-eslint/eslint-plugin": "^7.9.0",
     "@typescript-eslint/parser": "^7.9.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-standard": "^17.1.0",
