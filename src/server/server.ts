@@ -1,4 +1,10 @@
-import { app } from './app'
+import fastify from 'fastify'
+import { routes } from './app'
+// import { env } from '../env'
+
+const app = fastify()
+
+app.register(routes, { prefix: 'time' })
 
 app
   .listen({

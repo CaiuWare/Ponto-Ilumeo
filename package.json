@@ -13,9 +13,8 @@
     "docker:up": "docker compose up -d",
     "prisma:studio": "npx prisma studio",
     "prisma:migrate": "npx prisma migrate dev",
-    "start:server":"npx tsx watch src/server/server.ts"
-
-      },
+    "start:server": "npx tsx watch src/server/server.ts"
+  },
   "dependencies": {
     "@mantine/carousel": "^7.9.2",
     "@mantine/charts": "^7.9.2",
@@ -38,6 +37,7 @@
     "@types/react-router-dom": "^5.3.3",
     "crypto": "^1.0.1",
     "dayjs": "^1.11.11",
+    "dotenv": "^16.4.5",
     "embla-carousel-react": "^8.1.0",
     "fastify": "^4.27.0",
     "react": "^18.2.0",
