@@ -1,0 +1,11 @@
+version: '3'
+
+services: 
+  ilumeo-db:
+    image: postgres
+    ports: 
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=ilumeo
+      - POSTGRES_PASSWORD=ilumeo
+      - POSTGRES_DB=ilumeo

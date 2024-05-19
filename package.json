@@ -8,8 +8,14 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext .ts --fix",
     "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
-    "preview": "vite preview"
-  },
+    "preview": "vite preview",
+    "docker:start": "docker start ilumeo-db",
+    "docker:up": "docker compose up -d",
+    "prisma:studio": "npx prisma studio",
+    "prisma:migrate": "npx prisma migrate dev",
+    "start:server":"npx tsx watch src/server/server.ts"
+
+      },
   "dependencies": {
     "@mantine/carousel": "^7.9.2",
     "@mantine/charts": "^7.9.2",
@@ -30,16 +36,20 @@
     "@tiptap/react": "^2.4.0",
     "@tiptap/starter-kit": "^2.4.0",
     "@types/react-router-dom": "^5.3.3",
+    "crypto": "^1.0.1",
     "dayjs": "^1.11.11",
     "embla-carousel-react": "^8.1.0",
+    "fastify": "^4.27.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
-    "recharts": "^2.12.7"
+    "recharts": "^2.12.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.3.0",
     "@rocketseat/eslint-config": "^2.2.2",
+    "@types/node": "^20.12.12",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.9.0",
@@ -57,7 +67,9 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "globals": "^15.2.0",
     "prisma": "^5.14.0",
-    "typescript": "^5.2.2",
+    "tsup": "^8.0.2",
+    "tsx": "^4.10.5",
+    "typescript": "^5.4.5",
     "typescript-eslint": "^7.9.0",
     "vite": "^5.2.0"
   }

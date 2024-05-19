@@ -14,19 +14,19 @@ datasource db {
 }
 
 model User {
-  id        Int         @id @default(autoincrement())
+  id        String      @id @default(uuid())
   name      String
   email     String      @unique
   timeClock TimeClock[]
 }
 
 model TimeClock {
-  id        Int       @id @default(autoincrement())
+  id        String    @id @default(uuid())
   date      DateTime
   startTime DateTime
   endTime   DateTime?
   duration  Int?
-  userId    Int
+  userId    String
   user      User      @relation(fields: [userId], references: [id])
 
   @@index([userId])
