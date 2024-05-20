@@ -3,8 +3,6 @@ import { z } from 'zod'
 import { prisma } from '../lib/prisma'
 import { ShortUUID } from './helpers/helpers'
 
-// export const app = fastify()
-
 export async function routes(app: FastifyInstance) {
   app.post('/users', async (request, reply) => {
     const registerBodySchema = z.object({
@@ -28,25 +26,25 @@ export async function routes(app: FastifyInstance) {
     const getTransactionParamsSchema = z.object({
       id: z.string(),
     })
-  const { id } = getTransactionParamsSchema.parse(request.params);
+    const { id } = getTransactionParamsSchema.parse(request.params)
 
-  try {
-    const user = await prisma.user.findUnique({
-      where: {
-        id,
-      },
-    });
+    try {
+      const user = await prisma.user.findUnique({
+        where: {
+          id,
+        },
+      })
 
-    if (!user) {
-      return reply.status(404).send({ message: 'Usuário não encontrado' });
+      if (!user) {
+        return reply.status(404).send({ message: 'Usuário não encontrado' })
+      }
+
+      return reply.send(user)
+    } catch (error) {
+      console.error('Erro ao buscar usuário:', error)
+      return reply.status(500).send({ message: 'Erro ao buscar usuário' })
     }
-
-    return reply.send(user);
-  } catch (error) {
-    console.error('Erro ao buscar usuário:', error);
-    return reply.status(500).send({ message: 'Erro ao buscar usuário' });
-  }
-});
+  })
 
   app.post('/:id', async (request, reply) => {
     const getTransactionParamsSchema = z.object({
@@ -78,7 +76,6 @@ export async function routes(app: FastifyInstance) {
       const currentTime = new Date()
 
       if (!timeStatus || timeStatus.endTime) {
-        // Se não há registro ou o último registro já tem um endTime, criar um novo registro
         await prisma.timeClock.create({
           data: {
             id: ShortUUID(),
@@ -91,9 +88,8 @@ export async function routes(app: FastifyInstance) {
         })
         return reply.status(201).send('Hora de entrada registrada')
       } else if (!timeStatus.endTime) {
-        // Se há um registro sem endTime, atualizar o endTime e calcular a duração
         const startTime = new Date(timeStatus.startTime)
-        const duration = currentTime.getTime() - startTime.getTime() // Diferença em milissegundos
+        const duration = currentTime.getTime() - startTime.getTime()
 
         await prisma.timeClock.update({
           where: {
@@ -128,6 +124,6 @@ export async function routes(app: FastifyInstance) {
         date: 'desc',
       },
     })
-    return { timeHistory }
+    return timeHistory
   })
 }

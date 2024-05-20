@@ -1,11 +1,20 @@
 import { SetStateAction, useState } from 'react'
-import { Title, Text, Input, Container, Button } from '@mantine/core'
+import {
+  Title,
+  Text,
+  Input,
+  Container,
+  Button,
+  Notification,
+} from '@mantine/core'
 import classes from './loginPage.module.css'
-// import { Link } from 'react-router-dom'
 import { findUser } from '../../api/user'
+import { useNavigate } from 'react-router-dom'
 
 export function Login() {
   const [userId, setUserId] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const history = useNavigate()
 
   const demoProps = {
     h: 50,
@@ -28,13 +37,12 @@ export function Login() {
 
   const handleClick = async () => {
     try {
-      console.log('UserID:', userId)
-      const userData = await findUser(userId) // Chame a função findUser com o userId
-      console.log('User data:', userData.id)
-      // Faça algo com os dados do usuário, como redirecionar para outra página
+      const userData = await findUser(userId)
+
+      history(`/time/users/${userData.id}`)
     } catch (error) {
       console.error('Error fetching user:', error)
-      // Lide com o erro, se necessário
+      setError('Usuário não encontrado')
     }
   }
 
@@ -65,7 +73,6 @@ export function Login() {
           onChange={handleInputChange}
           {...InputProps}
         />
-        {/* <Link to={`/${userId}`}> */}
         <Button
           fullWidth
           mt="md"
@@ -83,7 +90,7 @@ export function Login() {
         >
           Confirmar
         </Button>
-        {/* </Link> */}
+        {error && <Notification color="red">{error}</Notification>}
       </Container>
     </>
   )

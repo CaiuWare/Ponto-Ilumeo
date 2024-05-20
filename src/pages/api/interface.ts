@@ -6,3 +6,13 @@ export interface TimeData {
   endTime: string | null
   duration: number | null
 }
+
+export interface TimeClockProps {
+  user: string
+}
+
+export interface User {
+  id: string
+  name: string
+  email: string
+}

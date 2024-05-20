@@ -1,5 +1,6 @@
 import axios from 'axios'
-// import { env } from '../../env'
+
+const URL = 'http://localhost:3333'
 
 export const getTime = async (userId: string) => {
   try {
@@ -12,9 +13,7 @@ export const getTime = async (userId: string) => {
 }
 export const registerTime = async (userId: string) => {
   try {
-    const response = await axios.post(`${URL}/time`, {
-      userId,
-    })
+    const response = await axios.post(`${URL}/time/${userId}`)
     return response.data
   } catch (error) {
     console.error('Error registering time:', error)
