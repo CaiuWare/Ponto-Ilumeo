@@ -1,6 +1,4 @@
 import React from 'react'
-// ClockInPage.tsx
-// import React from 'react';
 import {
   Container,
   Title,
@@ -10,7 +8,6 @@ import {
   Center,
   Flex,
 } from '@mantine/core'
-// import { useNavigate } from 'react-router-dom';
 
 const previousDays = [
   '03/11/23',
@@ -26,7 +23,6 @@ const previousDays = [
 ]
 
 export function TimeClock() {
-  // const navigate = useNavigate();
   const demoProps = {
     mt: '5rem',
     h: 50,
@@ -36,7 +32,6 @@ export function TimeClock() {
   }
 
   const handleClockIn = () => {
-    // Lógica para registrar a hora de entrada
   }
 
   return (
@@ -82,7 +77,6 @@ export function TimeClock() {
               justify="space-between"
               align="center"
               key={day}
-              // position="apart"
               style={{
                 backgroundColor: '#2C2D31',
                 padding: '1rem',

@@ -1,10 +1,12 @@
 import { SetStateAction, useState } from 'react'
 import { Title, Text, Input, Container, Button } from '@mantine/core'
 import classes from './loginPage.module.css'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
+import { findUser } from '../../api/user'
 
 export function Login() {
-  const [userId, setUserId] = useState('') // Estado para armazenar o valor do input
+  const [userId, setUserId] = useState('')
+
   const demoProps = {
     h: 50,
     mt: 'md',
@@ -21,21 +23,21 @@ export function Login() {
   const handleInputChange = (event: {
     target: { value: SetStateAction<string> }
   }) => {
-    // Atualiza o estado com o valor do input
     setUserId(event.target.value)
   }
 
   const handleClick = async () => {
-    // Use o valor de userId conforme necessário
-    console.log('UserID:', userId)
-
-    // Exemplo: Enviar o userId para uma função que faz uma requisição para o backend
-    // await enviarUserIdParaBackend(userId);
+    try {
+      console.log('UserID:', userId)
+      const userData = await findUser(userId) // Chame a função findUser com o userId
+      console.log('User data:', userData.id)
+      // Faça algo com os dados do usuário, como redirecionar para outra página
+    } catch (error) {
+      console.error('Error fetching user:', error)
+      // Lide com o erro, se necessário
+    }
   }
 
-  // const handleClick = () => {
-  //   Navigate('/id');
-  // };
   console.log(userId)
 
   return (
@@ -59,29 +61,29 @@ export function Login() {
           placeholder="Código do usuário"
           size="md"
           radius="xs"
-          value={userId} // Valor do input
-          onChange={handleInputChange} // Função para atualizar o estado com o valor do input
+          value={userId}
+          onChange={handleInputChange}
           {...InputProps}
         />
-        <Link to={`/${userId}`}>
-          <Button
-            fullWidth
-            mt="md"
-            size="md"
-            radius="xs"
-            styles={{
-              root: {
-                backgroundColor: 'orange',
-                '&:hover': {
-                  backgroundColor: '#FF8C00',
-                },
+        {/* <Link to={`/${userId}`}> */}
+        <Button
+          fullWidth
+          mt="md"
+          size="md"
+          radius="xs"
+          styles={{
+            root: {
+              backgroundColor: 'orange',
+              '&:hover': {
+                backgroundColor: '#FF8C00',
               },
-            }}
-            onClick={handleClick} // Chama a função handleClick ao clicar no botão
-          >
-            Confirmar
-          </Button>
-        </Link>
+            },
+          }}
+          onClick={handleClick}
+        >
+          Confirmar
+        </Button>
+        {/* </Link> */}
       </Container>
     </>
   )
